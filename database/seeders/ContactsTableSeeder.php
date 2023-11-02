@@ -22,7 +22,7 @@ class ContactsTableSeeder extends Seeder
         DB::table('contacts')->insert([
             'name' => 'Maria Souza',
             'contact' => '987654321',
-            'email' => 'maria@example.com',
+            'email' => 'maria@example.com.br',
         ]);
     }
 }
