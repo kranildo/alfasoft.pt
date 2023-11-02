@@ -16,7 +16,11 @@
     <tbody>
         @foreach($contacts as $contact)
         <tr>
-            <td>{{ $contact->id }}</td>
+            <td>
+                <strong>
+                    <a href="{{ route('contacts.show', ['id' => $contact->id]) }}">
+                        {{ $contact->id }}</a></strong>
+            </td>
             <td>{{ $contact->name }}</td>
             <td>{{ $contact->contact }}</td>
             <td>{{ $contact->email }}</td>

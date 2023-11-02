@@ -29,4 +29,14 @@ class ContactController extends Controller
 
         return redirect('/contacts')->with('success', 'Contato adicionado com sucesso');
     }
+    public function show($id)
+    {
+        $contact = Contact::find($id);
+
+        if (!$contact) {
+            return redirect('/contacts')->with('error', 'Contato não encontrado');
+        }
+
+        return view('contacts.show', compact('contact'));
+    }
 }
