@@ -39,4 +39,45 @@ class ContactController extends Controller
 
         return view('contacts.show', compact('contact'));
     }
+    public function edit($id)
+    {
+        $contact = Contact::find($id);
+
+        if (!$contact) {
+            return redirect('/contacts')->with('error', 'Contato não encontrado');
+        }
+
+        return view('contacts.edit', compact('contact'));
+    }
+    public function update(Request $request, $id)
+    {
+        $contact = Contact::find($id);
+
+        if (!$contact) {
+            return redirect('/contacts')->with('error', 'Contato não encontrado');
+        }
+
+        // Valide os dados do formulário
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:5',
+            'contact' => 'required|digits:9|unique:contacts,contact,' . $id,
+            'email' => 'required|email|unique:contacts,email,' . $id,
+        ]);
+
+        $contact->update($validatedData);
+
+        return redirect('/contacts')->with('success', 'Contato atualizado com sucesso');
+    }
+    public function destroy($id)
+    {
+        $contact = Contact::find($id);
+
+        if (!$contact) {
+            return redirect('/contacts')->with('error', 'Contato não encontrado');
+        }
+
+        $contact->delete();
+
+        return redirect('/contacts')->with('success', 'Contato excluído com sucesso');
+    }
 }

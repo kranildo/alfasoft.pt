@@ -8,5 +8,9 @@
 <p><strong>Nome:</strong> {{ $contact->name }}</p>
 <p><strong>Contact:</strong> {{ $contact->contact }}</p>
 <p><strong>Email:</strong> {{ $contact->email }}</p>
+<p>
+    <a href="{{ route('contacts.edit', ['id' => $contact->id]) }}" class="btn btn-primary mt-4">Editar Contato</a>
+</p>
+
 
 @endsection
