@@ -21,4 +21,4 @@ Route::get('/', function () {
 
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 Route::get('/contacts/create', [ContactController::class, 'create'])->name('contacts.create');
-Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
+Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store')->middleware('web');
