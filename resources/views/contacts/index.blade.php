@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+@include('includes.navbar')
 <h1>Listagem de Contatos</h1>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>

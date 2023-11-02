@@ -13,4 +13,20 @@ class ContactController extends Controller
 
         return view('contacts.index', compact('contacts'));
     }
+    public function create()
+    {
+        return view('contacts.create');
+    }
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:5',
+            'contact' => 'required|digits:9|unique:contacts',
+            'email' => 'required|email|unique:contacts',
+        ]);
+
+        Contact::create($validatedData);
+
+        return redirect('/contacts')->with('success', 'Contato adicionado com sucesso');
+    }
 }
